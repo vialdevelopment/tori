@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "tori",
+  "version": "${version}",
+
+  "name": "Tori",
+  "description": "Tori Utility mod for Minecraft 1.16.1",
+  "authors": [
+    "cats (tragically)"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.vialdevelopment.tori.OvercastEntryPoint"
+    ]
+  },
+  "mixins": [
+    "overcast.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
