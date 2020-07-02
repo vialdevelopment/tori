@@ -10,4 +10,6 @@ public interface IRunnableManager {
     void addRunnables();
 
     void addRunnable(IRunnable runnable);
+
+    boolean dispatchRunnable(String message);
 }

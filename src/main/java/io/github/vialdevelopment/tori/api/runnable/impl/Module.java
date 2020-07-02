@@ -1,6 +1,8 @@
 package io.github.vialdevelopment.tori.api.runnable.impl;
 
 import io.github.vialdevelopment.tori.api.runnable.toggleable.IToggleable;
+import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.client.Tori;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ public class Module extends Command implements IToggleable {
 
     private Category category;
 
-    private final List settings = new ArrayList();
+    private final List<Setting> settings = new ArrayList<>();
 
     public Module(String name, String description, Category category) {
         super(name, description);
@@ -26,6 +28,26 @@ public class Module extends Command implements IToggleable {
     @Override
     public void setState(boolean state) {
         this.state = state;
+        if (state) {
+            this.onEnable();
+        } else {
+            this.onDisable();
+        }
+    }
+
+    @Override
+    public void onEnable() {
+        if (!this.state) {
+            Tori.INSTANCE.eventManager.setAttending(this, true);
+        }
+
+    }
+
+    @Override
+    public void onDisable() {
+        if (this.state) {
+            Tori.INSTANCE.eventManager.setAttending(this, false);
+        }
     }
 
     @Override
@@ -39,7 +61,7 @@ public class Module extends Command implements IToggleable {
         return this.category;
     }
 
-    public List getSettings() {
+    public List<Setting> getSettings() {
         return this.settings;
     }
 }

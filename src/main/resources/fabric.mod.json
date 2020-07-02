@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.vialdevelopment.tori.OvercastEntryPoint"
+      "io.github.vialdevelopment.tori.ToriEntryPoint"
     ]
   },
   "mixins": [
-    "overcast.mixins.json"
+    "tori.mixins.json"
   ],
 
   "depends": {

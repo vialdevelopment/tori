@@ -9,4 +9,8 @@ public interface IToggleable {
     default void toggle() {
         this.setState(!this.getState());
     }
+
+    void onEnable();
+
+    void onDisable();
 }
