@@ -3,7 +3,10 @@
   "package": "io.github.vialdevelopment.tori.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinClientPlayerEntity"
+    "MixinClientPlayerEntity",
+    "MixinLightmapTextureManager",
+    "MixinItemCooldownManager",
+    "MixinCamera"
   ],
   "client": [
   ],

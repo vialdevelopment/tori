@@ -6,7 +6,7 @@ import io.github.vialdevelopment.tori.client.management.ModuleManager;
 import io.github.vialdevelopment.tori.util.Logger;
 
 public class Tori {
-    public static Tori INSTANCE = new Tori();
+    public static final Tori INSTANCE = new Tori();
 
     public final String MOD_NAME = "Tori";
 

@@ -6,6 +6,10 @@ import io.github.vialdevelopment.tori.api.runnable.impl.Command;
 import io.github.vialdevelopment.tori.api.runnable.impl.Module;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
+import io.github.vialdevelopment.tori.client.modules.exploit.ItemTweaksModule;
+import io.github.vialdevelopment.tori.client.modules.movement.SprintModule;
+import io.github.vialdevelopment.tori.client.modules.player.FreeCamModule;
+import io.github.vialdevelopment.tori.client.modules.render.BrightnessModule;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -17,7 +21,10 @@ public class ModuleManager implements IRunnableManager {
 
     @Override
     public void addRunnables() {
-
+        this.addRunnable(new SprintModule());
+        this.addRunnable(BrightnessModule.INSTANCE);
+        this.addRunnable(new ItemTweaksModule());
+        this.addRunnable(new FreeCamModule());
     }
 
     @Override
@@ -43,10 +50,10 @@ public class ModuleManager implements IRunnableManager {
     @Override
     public boolean dispatchRunnable(String message) {
         final String[] command = message.split(" ");
-        for (Command possibleCommand : this.getModules()) {
-            if (command[0].equalsIgnoreCase(possibleCommand.getName())) {
+        for (Module possibleModule : this.getModules()) {
+            if (command[0].equalsIgnoreCase(possibleModule.getName())) {
                 final String[] commandArgs = message.replace(command[0] + " ", "").split(" ");
-                possibleCommand.run(commandArgs);
+                possibleModule.run(commandArgs);
                 return true;
             }
         }
