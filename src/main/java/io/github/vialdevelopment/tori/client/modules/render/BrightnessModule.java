@@ -10,4 +10,9 @@ public class BrightnessModule extends Module {
     private BrightnessModule() {
         super("Brightness", "Brightens up your game, making playing a bit easier", Category.RENDER);
     }
+
+    @Override
+    public boolean shouldAttend() {
+        return false;
+    }
 }

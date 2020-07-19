@@ -19,7 +19,7 @@ public class Logger {
     /**
      * the prefix for logged messages
      */
-    private static final String prefix = Formatting.DARK_BLUE + Tori.INSTANCE.MOD_NAME + Formatting.WHITE + divider;
+    private static final String prefix = Formatting.DARK_BLUE + Tori.MOD_NAME + Formatting.WHITE + divider;
 
 
     /**

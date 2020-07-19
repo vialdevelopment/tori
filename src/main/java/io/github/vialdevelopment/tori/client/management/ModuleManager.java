@@ -7,9 +7,15 @@ import io.github.vialdevelopment.tori.api.runnable.impl.Module;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.modules.exploit.ItemTweaksModule;
+import io.github.vialdevelopment.tori.client.modules.misc.PortalChatModule;
+import io.github.vialdevelopment.tori.client.modules.movement.ElytraFlyModule;
 import io.github.vialdevelopment.tori.client.modules.movement.SprintModule;
+import io.github.vialdevelopment.tori.client.modules.movement.VelocityModule;
 import io.github.vialdevelopment.tori.client.modules.player.FreeCamModule;
 import io.github.vialdevelopment.tori.client.modules.render.BrightnessModule;
+import io.github.vialdevelopment.tori.client.modules.render.HUDModule;
+import io.github.vialdevelopment.tori.client.modules.render.NoRenderModule;
+import io.github.vialdevelopment.tori.util.Logger;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -25,6 +31,11 @@ public class ModuleManager implements IRunnableManager {
         this.addRunnable(BrightnessModule.INSTANCE);
         this.addRunnable(new ItemTweaksModule());
         this.addRunnable(new FreeCamModule());
+        this.addRunnable(new ElytraFlyModule());
+        this.addRunnable(new VelocityModule());
+        this.addRunnable(new PortalChatModule());
+        this.addRunnable(new NoRenderModule());
+        this.addRunnable(new HUDModule());
     }
 
     @Override
@@ -42,9 +53,10 @@ public class ModuleManager implements IRunnableManager {
             e.printStackTrace();
         }
 
-        Tori.INSTANCE.eventManager.registerAttender(module);
+        if (module.shouldAttend()) Tori.INSTANCE.eventManager.registerAttender(module);
 
-        this.getModules().add(module);
+        this.modules.add(module);
+        Logger.log(module.getName());
     }
 
     @Override
@@ -58,6 +70,13 @@ public class ModuleManager implements IRunnableManager {
             }
         }
         return false;
+    }
+
+    public Module getModule(String name) {
+        for (Module module : this.getModules()) {
+            if (module.getName().equalsIgnoreCase(name)) return module;
+        }
+        return null;
     }
 
     // getters and setters

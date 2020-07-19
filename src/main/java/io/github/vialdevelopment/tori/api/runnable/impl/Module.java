@@ -4,8 +4,12 @@ import io.github.vialdevelopment.tori.api.runnable.toggleable.IToggleable;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.util.Logger;
+import net.fabricmc.fabric.api.event.client.ClientTickCallback;
+import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +18,11 @@ public class Module extends Command implements IToggleable {
 
     private boolean state;
 
-    private int keyBind = InputUtil.UNKNOWN_KEY.getCode();
+    private final KeyBinding keyBinding = new KeyBinding(
+            this.getName(), // The translation key of the keybinding's name
+            GLFW.GLFW_KEY_UNKNOWN, // The keycode of the key
+            Tori.MOD_NAME // The translation key of the keybinding's category.
+    );
 
     private Category category;
 
@@ -44,16 +52,16 @@ public class Module extends Command implements IToggleable {
 
     @Override
     public void onEnable() {
-        if (!this.state) {
-            Tori.INSTANCE.eventManager.setAttending(this, true);
+        if (!this.getState()) {
+            if (this.shouldAttend()) Tori.INSTANCE.eventManager.setAttending(this, true);
         }
 
     }
 
     @Override
     public void onDisable() {
-        if (this.state) {
-            Tori.INSTANCE.eventManager.setAttending(this, false);
+        if (this.getState()) {
+            if (this.shouldAttend()) Tori.INSTANCE.eventManager.setAttending(this, false);
         }
     }
 
@@ -72,10 +80,10 @@ public class Module extends Command implements IToggleable {
 
             if (args.length == 2) {
                 if (args[1].equalsIgnoreCase("none")) {
-                    this.keyBind = InputUtil.UNKNOWN_KEY.getCode();
+                    this.keyBinding.setBoundKey(InputUtil.UNKNOWN_KEY);
                 }
                 try {
-                    this.keyBind = InputUtil.fromTranslationKey("key.keyboard." + args[1].toLowerCase()).getCode();
+                    this.keyBinding.setBoundKey(InputUtil.fromTranslationKey("key.keyboard." + args[1].toLowerCase()));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
@@ -109,7 +117,22 @@ public class Module extends Command implements IToggleable {
         }
     }
 
+    public String getModuleInfo() {
+        return "";
+    }
+
+    public boolean shouldAttend() {
+        return true;
+    }
+
     // getters and setters
+
+    public Setting getSetting(String name) {
+        for (Setting setting : this.getSettings()) {
+            if (setting.getName().equalsIgnoreCase(name)) return setting;
+        }
+        return null;
+    }
 
     public Category getCategory() {
         return this.category;
@@ -119,7 +142,7 @@ public class Module extends Command implements IToggleable {
         return this.settings;
     }
 
-    public int getKeyBind() {
-        return this.keyBind;
+    public KeyBinding getKeyBind() {
+        return this.keyBinding;
     }
 }

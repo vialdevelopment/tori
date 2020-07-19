@@ -3,10 +3,17 @@
   "package": "io.github.vialdevelopment.tori.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinBossBarHud",
+    "MixinCamera",
+    "MixinClientConnection",
     "MixinClientPlayerEntity",
-    "MixinLightmapTextureManager",
+    "MixinEntity",
+    "MixinGameRenderer",
+    "MixinInGameHud",
+    "MixinInGameOverlayRenderer",
     "MixinItemCooldownManager",
-    "MixinCamera"
+    "MixinLightmapTextureManager",
+    "MixinMinecraftClient"
   ],
   "client": [
   ],
