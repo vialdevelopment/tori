@@ -1,7 +1,7 @@
 package io.github.vialdevelopment.tori.client.modules.render;
 
-import io.github.vialdevelopment.tori.api.runnable.impl.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.Module;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
 
 public class BrightnessModule extends Module {
 

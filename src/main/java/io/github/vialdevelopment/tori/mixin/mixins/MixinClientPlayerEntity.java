@@ -1,14 +1,22 @@
 package io.github.vialdevelopment.tori.mixin.mixins;
 
 import com.mojang.authlib.GameProfile;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.ParseResults;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.vialdevelopment.tori.api.event.EventStage;
 import io.github.vialdevelopment.tori.client.Tori;
+import io.github.vialdevelopment.tori.client.events.InputEvent;
 import io.github.vialdevelopment.tori.client.events.MoveEvent;
 import io.github.vialdevelopment.tori.client.events.SendMovementPacketEvent;
 import io.github.vialdevelopment.tori.util.Logger;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.input.Input;
+import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +33,9 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
 
     @Shadow
     protected abstract void autoJump(float dx, float dz);
+
+    @Shadow public Input input;
+    @Shadow public abstract boolean isHoldingSneakKey();
 
     /**
      * keeps the compiler happy
@@ -67,6 +78,30 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
             super.move(type, new Vec3d(event.x, event.y, event.z));
             this.autoJump((float) (this.getX() - d), (float) (this.getZ() - e));
         }
+    }
+
+    @Inject(method = "tickMovement", at = @At(value = "HEAD"), cancellable = true)
+    private void tickMovementEarly(CallbackInfo ci) {
+        final InputEvent event = new InputEvent(EventStage.EARLY);
+        Tori.INSTANCE.eventManager.dispatch(event);
+
+        if (event.isCanceled()) {
+            ci.cancel();
+        }
+    }
+
+/*    @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/input/Input;tick(Z)V"))
+    private void tickWrapper(Input input, boolean bl) {
+        final InputEvent event = new InputEvent(EventStage.EARLY);
+        event.input = input;
+        Tori.INSTANCE.eventManager.dispatch(event);
+        if (!event.isCanceled()) event.input.tick(bl);
+    }*/
+
+    @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;getTutorialManager()Lnet/minecraft/client/tutorial/TutorialManager;"))
+    private void tickMovementLate(CallbackInfo ci) {
+        final InputEvent event = new InputEvent(EventStage.LATE);
+        Tori.INSTANCE.eventManager.dispatch(event);
     }
 
 

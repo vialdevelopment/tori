@@ -2,11 +2,10 @@ package io.github.vialdevelopment.tori.client.modules.misc;
 
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.Module;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
 import io.github.vialdevelopment.tori.client.events.TickEvent;
 import io.github.vialdevelopment.tori.mixin.duck.EntityDuck;
-import net.minecraft.client.network.ClientPlayerEntity;
 
 public class PortalChatModule extends Module {
     public PortalChatModule() {

@@ -1,12 +1,14 @@
 package io.github.vialdevelopment.tori.client;
 
 import io.github.vialdevelopment.attendance.EventManager;
-import io.github.vialdevelopment.tori.api.runnable.impl.Module;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.client.gui.ClickGUIScreen;
 import io.github.vialdevelopment.tori.client.management.CommandManager;
 import io.github.vialdevelopment.tori.client.management.ConfigManager;
 import io.github.vialdevelopment.tori.client.management.KeyBindingManager;
 import io.github.vialdevelopment.tori.client.management.ModuleManager;
 import io.github.vialdevelopment.tori.util.Logger;
+import net.minecraft.text.TranslatableText;
 
 public class Tori {
     public static final Tori INSTANCE = new Tori();
@@ -22,6 +24,8 @@ public class Tori {
     public final KeyBindingManager keyBindingManager = new KeyBindingManager();
 
     public final ConfigManager configManager = new ConfigManager();
+
+    public final ClickGUIScreen clickGUIScreen = new ClickGUIScreen(new TranslatableText("ToriClickGUI"));
 
     public void init() {
         this.commandManager.init();
@@ -39,5 +43,6 @@ public class Tori {
         for (Module module : this.moduleManager.getModules()) {
             Logger.log(module.getName());
         }
+        this.clickGUIScreen.initGUI();
     }
 }

@@ -2,19 +2,18 @@ package io.github.vialdevelopment.tori.client.management;
 
 import io.github.vialdevelopment.tori.api.management.IRunnableManager;
 import io.github.vialdevelopment.tori.api.runnable.IRunnable;
-import io.github.vialdevelopment.tori.api.runnable.impl.Command;
-import io.github.vialdevelopment.tori.api.runnable.impl.Module;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.modules.exploit.ItemTweaksModule;
 import io.github.vialdevelopment.tori.client.modules.misc.PortalChatModule;
 import io.github.vialdevelopment.tori.client.modules.movement.ElytraFlyModule;
+import io.github.vialdevelopment.tori.client.modules.movement.JesusModule;
 import io.github.vialdevelopment.tori.client.modules.movement.SprintModule;
 import io.github.vialdevelopment.tori.client.modules.movement.VelocityModule;
 import io.github.vialdevelopment.tori.client.modules.player.FreeCamModule;
-import io.github.vialdevelopment.tori.client.modules.render.BrightnessModule;
-import io.github.vialdevelopment.tori.client.modules.render.HUDModule;
-import io.github.vialdevelopment.tori.client.modules.render.NoRenderModule;
+import io.github.vialdevelopment.tori.client.modules.player.MultiSessionModule;
+import io.github.vialdevelopment.tori.client.modules.render.*;
 import io.github.vialdevelopment.tori.util.Logger;
 
 import java.lang.reflect.Field;
@@ -36,6 +35,10 @@ public class ModuleManager implements IRunnableManager {
         this.addRunnable(new PortalChatModule());
         this.addRunnable(new NoRenderModule());
         this.addRunnable(new HUDModule());
+        this.addRunnable(ClickGUIModule.INSTANCE);
+        this.addRunnable(JesusModule.INSTANCE);
+        this.addRunnable(new MultiSessionModule());
+        this.addRunnable(new ESPModule());
     }
 
     @Override

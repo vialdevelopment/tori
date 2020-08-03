@@ -2,7 +2,7 @@ package io.github.vialdevelopment.tori.client.management;
 
 import io.github.vialdevelopment.tori.api.management.IRunnableManager;
 import io.github.vialdevelopment.tori.api.runnable.IRunnable;
-import io.github.vialdevelopment.tori.api.runnable.impl.Command;
+import io.github.vialdevelopment.tori.api.runnable.impl.command.Command;
 import io.github.vialdevelopment.tori.client.commands.CommandsCommand;
 
 import java.util.ArrayList;

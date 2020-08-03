@@ -1,4 +1,4 @@
-package io.github.vialdevelopment.tori.api.runnable.impl;
+package io.github.vialdevelopment.tori.api.runnable.impl.command;
 
 import io.github.vialdevelopment.tori.api.runnable.IRunnable;
 

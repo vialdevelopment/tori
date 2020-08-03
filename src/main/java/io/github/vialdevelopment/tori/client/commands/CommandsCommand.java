@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client.commands;
 
-import io.github.vialdevelopment.tori.api.runnable.impl.Command;
+import io.github.vialdevelopment.tori.api.runnable.impl.command.Command;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.util.Logger;
 

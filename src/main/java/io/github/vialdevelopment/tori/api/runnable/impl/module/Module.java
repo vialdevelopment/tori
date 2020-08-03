@@ -1,11 +1,9 @@
-package io.github.vialdevelopment.tori.api.runnable.impl;
+package io.github.vialdevelopment.tori.api.runnable.impl.module;
 
+import io.github.vialdevelopment.tori.api.runnable.impl.command.Command;
 import io.github.vialdevelopment.tori.api.runnable.toggleable.IToggleable;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
-import io.github.vialdevelopment.tori.util.Logger;
-import net.fabricmc.fabric.api.event.client.ClientTickCallback;
-import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.InputUtil;

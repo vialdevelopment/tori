@@ -9,10 +9,12 @@
     "MixinClientPlayerEntity",
     "MixinEntity",
     "MixinGameRenderer",
+    "MixinHandshakeC2SPacket",
     "MixinInGameHud",
     "MixinInGameOverlayRenderer",
     "MixinItemCooldownManager",
     "MixinLightmapTextureManager",
+    "MixinLivingEntity",
     "MixinMinecraftClient"
   ],
   "client": [

@@ -2,13 +2,14 @@ package io.github.vialdevelopment.tori.client.modules.player;
 
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.Module;
+import io.github.vialdevelopment.tori.api.event.EventStage;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
 import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.client.events.InputEvent;
 import io.github.vialdevelopment.tori.client.events.UpdateCameraEvent;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;
-import net.minecraft.util.math.Vec3d;
 
 public class FreeCamModule extends Module {
 
@@ -18,23 +19,44 @@ public class FreeCamModule extends Module {
         super("FreeCam", "Allows you to move around freely from your body!", Category.PLAYER);
     }
 
-    private Vec3d pos;
+    private double x, y, z;
 
     private float yaw, pitch;
 
-    private Input input = new KeyboardInput(mc.options);
+    private Input input = null;
 
     @Override
     public void onEnable() {
         super.onEnable();
-        this.pos = mc.getEntityRenderManager().camera.getPos();
+        if (mc.getEntityRenderManager() == null) return;
+        this.x = mc.getEntityRenderManager().camera.getPos().getX();
+
+        this.y = mc.getEntityRenderManager().camera.getPos().getY();
+
+        this.z = mc.getEntityRenderManager().camera.getPos().getZ();
     }
 
     @Attend
+    private final Attender<InputEvent> inputEventAttender = new Attender<>(InputEvent.class, event -> {
+        if (mc.player == null || mc.world == null) return;
+            if (event.getStage() == EventStage.EARLY) {
+            if (this.input == null) {
+                this.input = new KeyboardInput(mc.options);
+            }
+            if (!mc.options.keyPlayerList.isPressed()) {
+                this.input.tick(mc.player.isHoldingSneakKey());
+                event.setCanceled(true);
+            }
+        }
+    });
+
+    @Attend
     public Attender<UpdateCameraEvent> updateCameraEvent = new Attender<>(UpdateCameraEvent.class, event -> {
-        if (mc.player == null) return;
+        if (mc.player == null || mc.world == null || this.input == null) return;
         this.setMoveSpeed(this.input, this.speed.getValue());
-        event.pos = this.pos;
+        event.x = this.x;
+        event.y = this.y;
+        event.z = this.z;
         event.setCanceled(true);
     });
 
@@ -42,10 +64,14 @@ public class FreeCamModule extends Module {
         double forward = input.movementForward;
         double strafe = input.movementSideways;
 
-        final Vec3d pos = this.pos;
+        double x  = 0;
 
-        if (input.jumping) pos.add(0, this.speed.getValue() / 3, 0);
-        if (input.sneaking) pos.add(0, -this.speed.getValue() / 3, 0);
+        double y = 0;
+
+        double z = 0;
+
+        if (input.jumping) y += this.speed.getValue() / 3;
+        if (input.sneaking) y -= this.speed.getValue() / 3;
         float yaw = mc.player.yaw;
         if (forward != 0.0 || strafe != 0.0) {
             if (forward != 0.0) {
@@ -61,8 +87,18 @@ public class FreeCamModule extends Module {
                     forward = -1.0;
                 }
             }
-            pos.add(forward * speed * -Math.sin(Math.toRadians(yaw)) + strafe * speed * Math.cos(Math.toRadians(yaw)), 0, forward * speed * Math.cos(Math.toRadians(yaw)) - strafe * speed * -Math.sin(Math.toRadians(yaw)));
+
+            x += forward * speed * -Math.sin(Math.toRadians(yaw)) + strafe * speed * Math.cos(Math.toRadians(yaw));
+
+            y += y;
+
+            z += forward * speed * Math.cos(Math.toRadians(yaw)) - strafe * speed * -Math.sin(Math.toRadians(yaw));
         }
-        this.pos = pos;
+
+        this.x += x;
+
+        this.y += y;
+
+        this.z += z;
     }
 }

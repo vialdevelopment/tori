@@ -33,7 +33,7 @@ public abstract class MixinCamera {
         Tori.INSTANCE.eventManager.dispatch(event);
 
         if (event.isCanceled()) {
-            this.setPos(event.pos.getX(), event.pos.getY(), event.pos.getZ());
+            this.setPos(event.x, event.y, event.z);
 
             this.setRotation(event.yaw, event.pitch);
 
