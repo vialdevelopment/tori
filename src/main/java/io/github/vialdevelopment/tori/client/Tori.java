@@ -1,7 +1,7 @@
 package io.github.vialdevelopment.tori.client;
 
 import io.github.vialdevelopment.attendance.EventManager;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.gui.ClickGUIScreen;
 import io.github.vialdevelopment.tori.client.management.CommandManager;
 import io.github.vialdevelopment.tori.client.management.ConfigManager;

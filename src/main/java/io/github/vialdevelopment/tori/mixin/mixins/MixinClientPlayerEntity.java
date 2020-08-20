@@ -35,7 +35,6 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
     protected abstract void autoJump(float dx, float dz);
 
     @Shadow public Input input;
-    @Shadow public abstract boolean isHoldingSneakKey();
 
     /**
      * keeps the compiler happy

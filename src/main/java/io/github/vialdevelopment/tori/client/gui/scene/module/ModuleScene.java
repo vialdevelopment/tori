@@ -1,12 +1,13 @@
 package io.github.vialdevelopment.tori.client.gui.scene.module;
 
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
-import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
+import io.github.vialdevelopment.tori.api.setting.impl.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.gui.api.Button;
 import io.github.vialdevelopment.tori.client.gui.api.ClickGUIScene;
 import io.github.vialdevelopment.tori.client.gui.scene.module.button.*;
 import io.github.vialdevelopment.tori.client.modules.render.ClickGUIModule;
+import io.github.vialdevelopment.tori.client.settings.BooleanSetting;
 import io.github.vialdevelopment.tori.util.Logger;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.Window;
@@ -36,7 +37,7 @@ public class ModuleScene implements ClickGUIScene {
                 if (ClickGUIModule.INSTANCE.debug.getValue()) Logger.println("Created module button " + button.text);
                 if (!module.getSettings().isEmpty()) {
                     for (Setting setting : module.getSettings()) {
-                        if (setting.getValue() instanceof Boolean) {
+                        if (setting instanceof BooleanSetting) {
                             button.settingButtons.add(new BooleanButton(setting));
                         }
                         if (setting.getValue() instanceof Number) {

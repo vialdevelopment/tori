@@ -3,17 +3,17 @@ package io.github.vialdevelopment.tori.client.modules.player;
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.event.EventStage;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
-import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.events.InputEvent;
 import io.github.vialdevelopment.tori.client.events.UpdateCameraEvent;
+import io.github.vialdevelopment.tori.client.settings.number.DoubleSetting;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;
 
 public class FreeCamModule extends Module {
 
-    private final Setting<Double> speed = new Setting<>("Speed", 1d);
+    private final DoubleSetting speed = new DoubleSetting("Speed", 1d);
 
     public FreeCamModule() {
         super("FreeCam", "Allows you to move around freely from your body!", Category.PLAYER);
@@ -28,12 +28,12 @@ public class FreeCamModule extends Module {
     @Override
     public void onEnable() {
         super.onEnable();
-        if (mc.getEntityRenderManager() == null) return;
-        this.x = mc.getEntityRenderManager().camera.getPos().getX();
+        if (mc.getEntityRenderDispatcher() == null) return;
+        this.x = mc.getEntityRenderDispatcher().camera.getPos().getX();
 
-        this.y = mc.getEntityRenderManager().camera.getPos().getY();
+        this.y = mc.getEntityRenderDispatcher().camera.getPos().getY();
 
-        this.z = mc.getEntityRenderManager().camera.getPos().getZ();
+        this.z = mc.getEntityRenderDispatcher().camera.getPos().getZ();
     }
 
     @Attend
@@ -44,7 +44,7 @@ public class FreeCamModule extends Module {
                 this.input = new KeyboardInput(mc.options);
             }
             if (!mc.options.keyPlayerList.isPressed()) {
-                this.input.tick(mc.player.isHoldingSneakKey());
+                this.input.tick(mc.player.shouldSlowDown());
                 event.setCanceled(true);
             }
         }
@@ -53,7 +53,7 @@ public class FreeCamModule extends Module {
     @Attend
     public Attender<UpdateCameraEvent> updateCameraEvent = new Attender<>(UpdateCameraEvent.class, event -> {
         if (mc.player == null || mc.world == null || this.input == null) return;
-        this.setMoveSpeed(this.input, this.speed.getValue());
+        this.setMoveSpeed(this.input, this.speed.getDoubleValue());
         event.x = this.x;
         event.y = this.y;
         event.z = this.z;
@@ -70,8 +70,8 @@ public class FreeCamModule extends Module {
 
         double z = 0;
 
-        if (input.jumping) y += this.speed.getValue() / 3;
-        if (input.sneaking) y -= this.speed.getValue() / 3;
+        if (input.jumping) y += this.speed.getDoubleValue() / 3;
+        if (input.sneaking) y -= this.speed.getDoubleValue() / 3;
         float yaw = mc.player.yaw;
         if (forward != 0.0 || strafe != 0.0) {
             if (forward != 0.0) {

@@ -3,8 +3,8 @@ package io.github.vialdevelopment.tori.client.modules.player;
 
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.events.PacketEvent;
 import io.github.vialdevelopment.tori.mixin.duck.HandshakeC2SPacketDuck;
 import io.github.vialdevelopment.tori.util.SessionUtil;

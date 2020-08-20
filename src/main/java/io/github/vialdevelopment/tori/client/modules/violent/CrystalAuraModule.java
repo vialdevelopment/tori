@@ -1,7 +1,7 @@
 package io.github.vialdevelopment.tori.client.modules.violent;
 
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 
 public class CrystalAuraModule extends Module {
     public CrystalAuraModule() {

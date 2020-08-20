@@ -2,7 +2,7 @@ package io.github.vialdevelopment.tori.client.management;
 
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.events.TickEvent;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;

@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.api.management;
 
-import io.github.vialdevelopment.tori.api.runnable.IRunnable;
+import io.github.vialdevelopment.tori.api.traits.IRunnable;
 
 public interface IRunnableManager {
     default void init() {

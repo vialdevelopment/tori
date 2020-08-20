@@ -2,8 +2,8 @@ package io.github.vialdevelopment.tori.client.modules.movement;
 
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.events.SendMovementPacketEvent;
 
 public class SprintModule extends Module {

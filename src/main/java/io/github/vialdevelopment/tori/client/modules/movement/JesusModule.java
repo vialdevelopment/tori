@@ -1,7 +1,7 @@
 package io.github.vialdevelopment.tori.client.modules.movement;
 
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 
 public class JesusModule extends Module {
 
@@ -9,5 +9,10 @@ public class JesusModule extends Module {
 
     public JesusModule() {
         super("Jesus", "Lets you walk on water", Category.MOVEMENT);
+    }
+
+    @Override
+    public boolean shouldAttend() {
+        return false;
     }
 }

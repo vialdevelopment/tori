@@ -1,4 +1,4 @@
-package io.github.vialdevelopment.tori.api.runnable.impl.module;
+package io.github.vialdevelopment.tori.api.runnable.module;
 
 public enum Category {
     MOVEMENT,

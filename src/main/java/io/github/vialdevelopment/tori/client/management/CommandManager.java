@@ -1,9 +1,10 @@
 package io.github.vialdevelopment.tori.client.management;
 
 import io.github.vialdevelopment.tori.api.management.IRunnableManager;
-import io.github.vialdevelopment.tori.api.runnable.IRunnable;
-import io.github.vialdevelopment.tori.api.runnable.impl.command.Command;
+import io.github.vialdevelopment.tori.api.traits.IRunnable;
+import io.github.vialdevelopment.tori.api.runnable.command.Command;
 import io.github.vialdevelopment.tori.client.commands.CommandsCommand;
+import io.github.vialdevelopment.tori.client.commands.LoginCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class CommandManager implements IRunnableManager {
     @Override
     public void addRunnables() {
         this.addRunnable(new CommandsCommand());
+        this.addRunnable(new LoginCommand());
     }
 
     @Override

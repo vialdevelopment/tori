@@ -8,9 +8,9 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
@@ -100,18 +100,18 @@ public class RenderUtil {
     }
 
     public static Vec3d interpolatePos(Vec3d pos) {
-        return pos.subtract(mc.getEntityRenderManager().camera.getPos());
+        return pos.subtract(mc.getEntityRenderDispatcher().camera.getPos());
     }
 
     public static Box interpolateBox(Box box) {
-        return box.offset(mc.getEntityRenderManager().camera.getPos().multiply(-1));
+        return box.offset(mc.getEntityRenderDispatcher().camera.getPos().multiply(-1));
     }
 
     public static void startRender(MatrixStack matrixStack) {
         RenderSystem.multMatrix(matrixStack.peek().getModel());
         //RenderSystem.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         RenderSystem.enableBlend();
-        RenderSystem.disableLighting();
+        //RenderSystem.disableLighting();
         RenderSystem.disableCull();
         // Reset the color here so it doesn't end up breaking things later
         RenderSystem.color4f(-1, -1, -1, -1);
@@ -123,5 +123,23 @@ public class RenderUtil {
         RenderSystem.enableCull();
         RenderSystem.enableLighting();
         RenderSystem.disableBlend();
+    }
+
+
+    public static Box getEntityRenderBox(Entity entity, float tickDelta) {
+        final double x = entity.lastRenderX + ((entity.getPos().x - entity.lastRenderX) * tickDelta);
+        final double y = entity.lastRenderY + ((entity.getPos().y - entity.lastRenderY) * tickDelta);
+        final double z = entity.lastRenderZ + ((entity.getPos().z - entity.lastRenderZ) * tickDelta);
+
+        final Box entityBox = entity.getBoundingBox();
+
+        final Vec3d pos = entity.getPos();
+
+        return new Box(entityBox.minX - pos.x + x,
+                entityBox.minY - pos.y + y,
+                entityBox.minZ - pos.z + z,
+                entityBox.maxX - pos.x + x,
+                entityBox.maxY - pos.y + y,
+                entityBox.maxZ - pos.z + z);
     }
 }

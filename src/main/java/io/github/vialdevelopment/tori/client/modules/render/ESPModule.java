@@ -3,14 +3,18 @@ package io.github.vialdevelopment.tori.client.modules.render;
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.events.Render3DEvent;
 import io.github.vialdevelopment.tori.util.RenderUtil;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Box;
 
 import java.awt.*;
 
@@ -32,13 +36,26 @@ public class ESPModule extends Module {
             if (entity != mc.player) {
                 final Color color = this.getEntityColor(entity);
                 if (color != null) {
+
+                    final Box renderBox = RenderUtil.getEntityRenderBox(entity, event.tickDelta);
+
                     // Draw the filled box
-                    RenderUtil.drawFilledBox(entity.getBoundingBox(), new Color(color.getRed(), color.getGreen(), color.getBlue(), 40));
+                    RenderUtil.drawFilledBox(renderBox, new Color(color.getRed(), color.getGreen(), color.getBlue(), 40));
 
                     //draw the outline
                     RenderSystem.lineWidth(1.5f);
-                    RenderUtil.drawBox(entity.getBoundingBox(), color);
+                    RenderUtil.drawBox(renderBox, color);
                 }
+            }
+        }
+
+        for (BlockEntity blockEntity : mc.world.blockEntities) {
+            if (blockEntity == null) continue;
+            if ((blockEntity instanceof ChestBlockEntity) || (blockEntity instanceof FurnaceBlockEntity)) {
+
+                final Box box = new Box(blockEntity.getPos());
+
+                RenderUtil.drawBox(box, Color.RED);
             }
         }
 

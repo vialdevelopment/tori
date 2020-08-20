@@ -1,8 +1,8 @@
 package io.github.vialdevelopment.tori.client.config;
 
 import io.github.vialdevelopment.tori.api.config.Configurable;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
-import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
+import io.github.vialdevelopment.tori.api.setting.impl.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.util.Logger;
 

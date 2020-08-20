@@ -1,9 +1,12 @@
-package io.github.vialdevelopment.tori.api.runnable.impl.module;
+package io.github.vialdevelopment.tori.api.runnable.module;
 
-import io.github.vialdevelopment.tori.api.runnable.impl.command.Command;
-import io.github.vialdevelopment.tori.api.runnable.toggleable.IToggleable;
-import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.runnable.command.Command;
+import io.github.vialdevelopment.tori.api.setting.impl.Setting;
+import io.github.vialdevelopment.tori.api.traits.IToggleable;
 import io.github.vialdevelopment.tori.client.Tori;
+import io.github.vialdevelopment.tori.client.settings.BooleanSetting;
+import io.github.vialdevelopment.tori.client.settings.number.DoubleSetting;
+import io.github.vialdevelopment.tori.client.settings.number.FloatSetting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -91,15 +94,15 @@ public class Module extends Command implements IToggleable {
 
         for (Setting setting : settings) {
             if (args[0].equalsIgnoreCase(setting.getName())) {
-                if (setting.getValue() instanceof Boolean) {
-                    setting.setValue(Boolean.parseBoolean(args[1]));
+                if (setting instanceof BooleanSetting) {
+                    ((BooleanSetting) setting).setBooleanValue(Boolean.parseBoolean(args[1]));
                 } else
                 if (setting.getValue() instanceof Number) {
-                    if (setting.getValue() instanceof Double) {
-                        setting.setValue(Double.parseDouble(args[1]));
+                    if (setting instanceof DoubleSetting) {
+                        ((DoubleSetting) setting).setDoubleValue(Double.parseDouble(args[1]));
                     } else
-                    if (setting.getValue() instanceof Float) {
-                        setting.setValue(Float.parseFloat(args[1]));
+                    if (setting instanceof FloatSetting) {
+                        ((FloatSetting) setting).setFloatValue(Float.parseFloat(args[1]));
                     } else
                     if (setting.getValue() instanceof Integer) {
                         setting.setValue(Integer.parseInt(args[1]));

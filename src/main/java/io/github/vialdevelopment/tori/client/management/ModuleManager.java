@@ -1,11 +1,12 @@
 package io.github.vialdevelopment.tori.client.management;
 
 import io.github.vialdevelopment.tori.api.management.IRunnableManager;
-import io.github.vialdevelopment.tori.api.runnable.IRunnable;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
-import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.setting.impl.Setting;
+import io.github.vialdevelopment.tori.api.traits.IRunnable;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.modules.exploit.ItemTweaksModule;
+import io.github.vialdevelopment.tori.client.modules.exploit.SpeedMineModule;
 import io.github.vialdevelopment.tori.client.modules.misc.PortalChatModule;
 import io.github.vialdevelopment.tori.client.modules.movement.ElytraFlyModule;
 import io.github.vialdevelopment.tori.client.modules.movement.JesusModule;
@@ -39,6 +40,7 @@ public class ModuleManager implements IRunnableManager {
         this.addRunnable(JesusModule.INSTANCE);
         this.addRunnable(new MultiSessionModule());
         this.addRunnable(new ESPModule());
+        this.addRunnable(new SpeedMineModule());
     }
 
     @Override

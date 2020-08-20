@@ -1,4 +1,4 @@
-package io.github.vialdevelopment.tori.api.runnable.toggleable;
+package io.github.vialdevelopment.tori.api.traits;
 
 public interface IToggleable {
 

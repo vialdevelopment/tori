@@ -2,19 +2,20 @@ package io.github.vialdevelopment.tori.client.modules.movement;
 
 import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Category;
-import io.github.vialdevelopment.tori.api.runnable.impl.module.Module;
-import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.runnable.module.Category;
+import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.events.MoveEvent;
+import io.github.vialdevelopment.tori.client.settings.BooleanSetting;
+import io.github.vialdevelopment.tori.client.settings.number.DoubleSetting;
 import io.github.vialdevelopment.tori.util.PlayerUtil;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 
 public class ElytraFlyModule extends Module {
 
-    private final Setting<Double> speed = new Setting<>("Speed", 1d);
-    private final Setting<Double> descendSpeed = new Setting<>("Descent", -0.000101d);
-    private final Setting<Boolean> up = new Setting<>("Up", true);
-    private final Setting<Boolean> infiniteDurability = new Setting<>("InfiniteDurability", false);
+    private final DoubleSetting speed = new DoubleSetting("Speed", 1d);
+    private final DoubleSetting descendSpeed = new DoubleSetting("Descent", -0.000101d);
+    private final BooleanSetting up = new BooleanSetting("Up", true);
+    private final BooleanSetting infiniteDurability = new BooleanSetting("InfiniteDurability", false);
 
     public ElytraFlyModule() {
         super("ElytraFly", "Vroom", Category.MOVEMENT);
@@ -29,25 +30,25 @@ public class ElytraFlyModule extends Module {
 
         if (mc.player.isFallFlying()) {
 
-            if (this.infiniteDurability.getValue()) {
+            if (this.infiniteDurability.getBooleanValue()) {
                 mc.getNetworkHandler().sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.START_FALL_FLYING));
                 mc.getNetworkHandler().sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.START_FALL_FLYING));
             }
 
-            if (!this.up.getValue()) {
+            if (!this.up.getBooleanValue()) {
                 if (!mc.options.keyJump.isPressed()) {
                     if (mc.options.keySneak.isPressed()) {
-                        mc.player.setVelocity(mc.player.getVelocity().x, -(this.speed.getValue() / 2), mc.player.getVelocity().z);
-                        event.y = -(this.speed.getValue() / 2);
-                    } else if (event.y != this.descendSpeed.getValue()) {
-                        event.y = (this.descendSpeed.getValue());
-                        mc.player.setVelocity(mc.player.getVelocity().x, this.descendSpeed.getValue(), mc.player.getVelocity().z);
+                        mc.player.setVelocity(mc.player.getVelocity().x, -(this.speed.getDoubleValue() / 2), mc.player.getVelocity().z);
+                        event.y = -(this.speed.getDoubleValue() / 2);
+                    } else if (event.y != this.descendSpeed.getDoubleValue()) {
+                        event.y = (this.descendSpeed.getDoubleValue());
+                        mc.player.setVelocity(mc.player.getVelocity().x, this.descendSpeed.getDoubleValue(), mc.player.getVelocity().z);
                     }
                 }
             } else {
                 if (!mc.options.keyJump.isPressed() && !mc.options.keySneak.isPressed()) {
-                    if (event.y != this.descendSpeed.getValue()) {
-                        event.y = (this.descendSpeed.getValue());
+                    if (event.y != this.descendSpeed.getDoubleValue()) {
+                        event.y = (this.descendSpeed.getDoubleValue());
                     }
                     mc.player.setVelocity(mc.player.getVelocity().x, 0, mc.player.getVelocity().z);
                 } else {
@@ -56,19 +57,19 @@ public class ElytraFlyModule extends Module {
 
                     if (mc.options.keyJump.isPressed()) {
 
-                        motion += this.speed.getValue() / 2;
+                        motion += this.speed.getDoubleValue() / 2;
                     }
                     if (mc.options.keySneak.isPressed()) {
-                        motion -= (this.speed.getValue() / 2);
+                        motion -= (this.speed.getDoubleValue() / 2);
                     }
                     mc.player.setVelocity(mc.player.getVelocity().x, motion, mc.player.getVelocity().z);
                 }
             }
 
-            PlayerUtil.setXMovement(event, this.speed.getValue());
+            PlayerUtil.setXMovement(event, this.speed.getDoubleValue());
 
 
-            if (this.infiniteDurability.getValue()) {
+            if (this.infiniteDurability.getBooleanValue()) {
                 mc.getNetworkHandler().sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.START_FALL_FLYING));
                 mc.getNetworkHandler().sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.START_FALL_FLYING));
             }

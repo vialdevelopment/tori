@@ -5,8 +5,10 @@
   "mixins": [
     "MixinBossBarHud",
     "MixinCamera",
+    "MixinChatHud",
     "MixinClientConnection",
     "MixinClientPlayerEntity",
+    "MixinClientPlayerInteractionManager",
     "MixinEntity",
     "MixinGameRenderer",
     "MixinHandshakeC2SPacket",
