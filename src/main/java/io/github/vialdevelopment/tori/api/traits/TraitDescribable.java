@@ -1,5 +1,5 @@
 package io.github.vialdevelopment.tori.api.traits;
 
-public interface IDescribable {
+public interface TraitDescribable {
     String getDescription();
 }

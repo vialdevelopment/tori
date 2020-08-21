@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client.settings;
 
-import io.github.vialdevelopment.tori.api.setting.impl.Setting;
+import io.github.vialdevelopment.tori.api.setting.Setting;
 
 public class BooleanSetting extends Setting<Boolean> {
 

@@ -1,5 +1,5 @@
 package io.github.vialdevelopment.tori.api.traits;
 
-public interface IRunnable {
+public interface TraitRunnable {
     void run(String[] args);
 }

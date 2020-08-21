@@ -1,8 +1,8 @@
 package io.github.vialdevelopment.tori.client.management;
 
 import io.github.vialdevelopment.tori.api.management.IRunnableManager;
-import io.github.vialdevelopment.tori.api.setting.impl.Setting;
-import io.github.vialdevelopment.tori.api.traits.IRunnable;
+import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.traits.TraitRunnable;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.modules.exploit.ItemTweaksModule;
@@ -44,7 +44,7 @@ public class ModuleManager implements IRunnableManager {
     }
 
     @Override
-    public void addRunnable(IRunnable runnable) {
+    public void addRunnable(TraitRunnable runnable) {
         final Module module = (Module) runnable;
         try {
             for (Field field : module.getClass().getDeclaredFields()) {

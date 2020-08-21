@@ -1,7 +1,7 @@
 package io.github.vialdevelopment.tori.client.gui.scene.module;
 
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
-import io.github.vialdevelopment.tori.api.setting.impl.Setting;
+import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.gui.api.Button;
 import io.github.vialdevelopment.tori.client.gui.api.ClickGUIScene;

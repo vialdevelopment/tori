@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.api.traits;
 
-public interface IToggleable {
+public interface TraitToggleable {
 
     boolean getState();
 

@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client.gui.scene.module.button;
 
-import io.github.vialdevelopment.tori.api.setting.impl.Setting;
+import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.util.FontUtil;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;

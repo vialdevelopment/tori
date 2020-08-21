@@ -1,8 +1,8 @@
 package io.github.vialdevelopment.tori.api.runnable.module;
 
 import io.github.vialdevelopment.tori.api.runnable.command.Command;
-import io.github.vialdevelopment.tori.api.setting.impl.Setting;
-import io.github.vialdevelopment.tori.api.traits.IToggleable;
+import io.github.vialdevelopment.tori.api.setting.Setting;
+import io.github.vialdevelopment.tori.api.traits.TraitToggleable;
 import io.github.vialdevelopment.tori.client.Tori;
 import io.github.vialdevelopment.tori.client.settings.BooleanSetting;
 import io.github.vialdevelopment.tori.client.settings.number.DoubleSetting;
@@ -15,7 +15,7 @@ import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Module extends Command implements IToggleable {
+public class Module extends Command implements TraitToggleable {
 
     private boolean state;
 

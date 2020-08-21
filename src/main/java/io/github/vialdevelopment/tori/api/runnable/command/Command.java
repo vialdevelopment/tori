@@ -1,10 +1,10 @@
 package io.github.vialdevelopment.tori.api.runnable.command;
 
-import io.github.vialdevelopment.tori.api.traits.IDescribable;
-import io.github.vialdevelopment.tori.api.traits.INameable;
-import io.github.vialdevelopment.tori.api.traits.IRunnable;
+import io.github.vialdevelopment.tori.api.traits.TraitDescribable;
+import io.github.vialdevelopment.tori.api.traits.TraitNameable;
+import io.github.vialdevelopment.tori.api.traits.TraitRunnable;
 
-public class Command implements IRunnable, INameable, IDescribable {
+public class Command implements TraitRunnable, TraitNameable, TraitDescribable {
 
     private final String name;
 

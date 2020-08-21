@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.api.management;
 
-import io.github.vialdevelopment.tori.api.traits.IRunnable;
+import io.github.vialdevelopment.tori.api.traits.TraitRunnable;
 
 public interface IRunnableManager {
     default void init() {
@@ -9,7 +9,7 @@ public interface IRunnableManager {
 
     void addRunnables();
 
-    void addRunnable(IRunnable runnable);
+    void addRunnable(TraitRunnable runnable);
 
     boolean dispatchRunnable(String message);
 }

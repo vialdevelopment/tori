@@ -1,5 +1,5 @@
 package io.github.vialdevelopment.tori.api.traits;
 
-public interface INameable {
+public interface TraitNameable {
     String getName();
 }

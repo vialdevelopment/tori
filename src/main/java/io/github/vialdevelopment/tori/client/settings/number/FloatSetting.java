@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client.settings.number;
 
-import io.github.vialdevelopment.tori.api.setting.impl.Setting;
+import io.github.vialdevelopment.tori.api.setting.Setting;
 
 public class FloatSetting extends Setting<Float> {
 
