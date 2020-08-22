@@ -22,3 +22,4 @@ gradle/wrapper/gradle-wrapper.properties
 eclipse
 run
 remappedSrc
+logs
