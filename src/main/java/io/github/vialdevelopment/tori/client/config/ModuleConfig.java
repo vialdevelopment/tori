@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client.config;
 
-import io.github.vialdevelopment.tori.api.config.Configurable;
+import io.github.vialdevelopment.tori.api.config.TraitConfigurable;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.client.Tori;
@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModuleConfig implements Configurable {
+public class ModuleConfig implements TraitConfigurable {
 
     @Override
     public void write() {

@@ -5,7 +5,7 @@ import net.minecraft.client.MinecraftClient;
 
 import java.io.File;
 
-public interface Configurable {
+public interface TraitConfigurable {
 
     default String getPath() {
         return Tori.INSTANCE.configManager.PATH;

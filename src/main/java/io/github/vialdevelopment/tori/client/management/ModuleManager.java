@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client.management;
 
-import io.github.vialdevelopment.tori.api.management.IRunnableManager;
+import io.github.vialdevelopment.tori.api.management.RunnableManager;
 import io.github.vialdevelopment.tori.api.setting.Setting;
 import io.github.vialdevelopment.tori.api.traits.TraitRunnable;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
@@ -21,7 +21,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModuleManager implements IRunnableManager {
+public class ModuleManager implements RunnableManager {
 
     private final List<Module> modules = new ArrayList<>();
 
