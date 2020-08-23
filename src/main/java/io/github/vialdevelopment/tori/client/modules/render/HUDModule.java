@@ -1,6 +1,5 @@
 package io.github.vialdevelopment.tori.client.modules.render;
 
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.runnable.module.Category;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
@@ -33,7 +32,6 @@ public class HUDModule extends Module {
     private float increment = 0;
 
 
-    @Attend
     private final Attender<Render2DEvent> render2DEventAttender = new Attender<>(Render2DEvent.class, event -> {
         if (mc.world == null || mc.player == null) return;
         this.drawArrayList(event.matrixStack);

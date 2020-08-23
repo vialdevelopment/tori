@@ -1,6 +1,5 @@
 package io.github.vialdevelopment.tori.client.modules.movement;
 
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.runnable.module.Category;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
@@ -11,7 +10,6 @@ public class SprintModule extends Module {
         super("Sprint", "Sprints for you!", Category.MOVEMENT);
     }
 
-    @Attend
     private final Attender<SendMovementPacketEvent> sendMovementPacketEvent = new Attender<>(SendMovementPacketEvent.class, event -> {
         if (mc.player == null) return;
         if (mc.player.input.movementForward != 0 || mc.player.input.movementSideways != 0) {

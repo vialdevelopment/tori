@@ -1,6 +1,5 @@
 package io.github.vialdevelopment.tori.client.management;
 
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.Tori;
@@ -25,7 +24,6 @@ public class KeyBindingManager {
         Tori.INSTANCE.eventManager.setAttending(this, true);
     }
 
-    @Attend
     private final Attender<TickEvent> tickEvent = new Attender<>(TickEvent.class, event -> {
        for (Module module : Tori.INSTANCE.moduleManager.getModules()) {
            if (module.getKeyBind().wasPressed()) {

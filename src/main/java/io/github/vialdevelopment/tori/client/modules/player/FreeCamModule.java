@@ -1,6 +1,5 @@
 package io.github.vialdevelopment.tori.client.modules.player;
 
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.event.EventStage;
 import io.github.vialdevelopment.tori.api.runnable.module.Category;
@@ -36,7 +35,6 @@ public class FreeCamModule extends Module {
         this.z = mc.getEntityRenderDispatcher().camera.getPos().getZ();
     }
 
-    @Attend
     private final Attender<InputEvent> inputEventAttender = new Attender<>(InputEvent.class, event -> {
         if (mc.player == null || mc.world == null) return;
             if (event.getStage() == EventStage.EARLY) {
@@ -50,7 +48,6 @@ public class FreeCamModule extends Module {
         }
     });
 
-    @Attend
     public Attender<UpdateCameraEvent> updateCameraEvent = new Attender<>(UpdateCameraEvent.class, event -> {
         if (mc.player == null || mc.world == null || this.input == null) return;
         this.setMoveSpeed(this.input, this.speed.getDoubleValue());

@@ -1,6 +1,6 @@
 package io.github.vialdevelopment.tori.client;
 
-import io.github.vialdevelopment.attendance.EventManager;
+import io.github.vialdevelopment.attendance.manager.impl.ParentEventManager;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
 import io.github.vialdevelopment.tori.client.gui.ClickGUIScreen;
 import io.github.vialdevelopment.tori.client.management.CommandManager;
@@ -15,7 +15,7 @@ public class Tori {
 
     public static final String MOD_NAME = "Tori";
 
-    public final EventManager eventManager = new EventManager();
+    public final ParentEventManager eventManager = new ParentEventManager();
 
     public final CommandManager commandManager = new CommandManager();
 

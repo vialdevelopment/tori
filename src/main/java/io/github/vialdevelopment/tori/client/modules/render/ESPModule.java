@@ -1,7 +1,6 @@
 package io.github.vialdevelopment.tori.client.modules.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.runnable.module.Category;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
@@ -23,7 +22,6 @@ public class ESPModule extends Module {
         super("ESP", "Shows the locations of some things", Category.RENDER);
     }
 
-    @Attend
     private final Attender<Render3DEvent> render3DEvent = new Attender<>(Render3DEvent.class, event -> {
         if (mc.world == null) return;
         RenderSystem.pushMatrix();

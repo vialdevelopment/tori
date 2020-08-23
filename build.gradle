@@ -30,8 +30,8 @@ dependencies {
 
     include group: 'net.jodah', name: 'typetools', version: '0.5.0'
 
-    modImplementation "io.github.vialdevelopment:attendance:master-SNAPSHOT"
-    include "io.github.vialdevelopment:attendance:master-SNAPSHOT"
+    modImplementation "io.github.vialdevelopment:attendance:rewrite-SNAPSHOT"
+    include "io.github.vialdevelopment:attendance:rewrite-SNAPSHOT"
 }
 
 

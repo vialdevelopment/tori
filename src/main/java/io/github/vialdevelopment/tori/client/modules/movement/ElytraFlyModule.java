@@ -1,6 +1,5 @@
 package io.github.vialdevelopment.tori.client.modules.movement;
 
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.runnable.module.Category;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
@@ -21,7 +20,6 @@ public class ElytraFlyModule extends Module {
         super("ElytraFly", "Vroom", Category.MOVEMENT);
     }
 
-    @Attend
     private final Attender<MoveEvent> moveEvent = new Attender<>(MoveEvent.class, event -> {
 
         if (mc.player == null) return;

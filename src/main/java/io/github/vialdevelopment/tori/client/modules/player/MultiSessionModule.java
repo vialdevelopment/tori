@@ -1,7 +1,5 @@
 package io.github.vialdevelopment.tori.client.modules.player;
 
-
-import io.github.vialdevelopment.attendance.attender.Attend;
 import io.github.vialdevelopment.attendance.attender.Attender;
 import io.github.vialdevelopment.tori.api.runnable.module.Category;
 import io.github.vialdevelopment.tori.api.runnable.module.Module;
@@ -26,7 +24,6 @@ public class MultiSessionModule extends Module {
 
     private final HashMap<ClientPlayerEntity, Session> sessionMap = new HashMap<>();
 
-    @Attend
     private final Attender<PacketEvent.Out> packetEventAttender = new Attender<>(PacketEvent.Out.class, event -> {
         if (event.packet instanceof HandshakeC2SPacket) {
             final HandshakeC2SPacketDuck packet = (HandshakeC2SPacketDuck) event.packet;
